@@ -1,7 +1,20 @@
 import { Footer, Header, Main, Title } from "@/components/elements/layout"
 import { Nav } from "@/components/elements/nav"
 import Link from "next/link"
+import { Archivo_Black, Yomogi } from "next/font/google"
 import "./reset.css"
+
+const archivoBlack = Archivo_Black({
+  variable: "--font-archivo-black",
+  weight: "400",
+  subsets: ["latin"],
+})
+
+const yomogi = Yomogi({
+  variable: "--font-yomogi",
+  weight: "400",
+  subsets: ["latin"],
+})
 
 export const metadata = {
   title: "reexperiri",
@@ -11,21 +24,19 @@ export const metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="ja">
+    <html lang="ja" className={`${archivoBlack.variable} ${yomogi.variable}`}>
       <body>
         <Header>
           <div
             style={{
               alignItems: "center",
               display: "flex",
-              gap: "1.5rem",
+              gap: "2rem",
+              justifyContent: "space-between",
             }}
           >
-            <Title>
-              <Link
-                href="/"
-                style={{ color: "#e5e7eb", textDecoration: "none" }}
-              >
+            <Title style={{ fontFamily: "var(--font-display)" }}>
+              <Link href="/" style={{ textDecoration: "none" }}>
                 reexperiri
               </Link>
             </Title>

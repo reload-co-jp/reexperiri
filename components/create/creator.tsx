@@ -59,19 +59,20 @@ const typeLabels: Record<WorkType, string> = {
 }
 
 const fieldStyle = {
-  backgroundColor: "#444",
+  backgroundColor: "var(--color-surface-strong)",
   border: "none",
   borderRadius: ".25rem",
-  color: "#e5e7eb",
+  color: "var(--color-fg)",
   padding: ".5rem",
 } as const
 
 const buttonStyle = {
-  backgroundColor: "#3b82f6",
+  backgroundColor: "var(--color-accent)",
   border: "none",
   borderRadius: ".25rem",
   color: "#fff",
   cursor: "pointer",
+  fontWeight: 700,
   padding: ".5rem 1.5rem",
 } as const
 
@@ -119,7 +120,7 @@ export const Creator: FC<{ type: WorkType }> = ({ type }) => {
   }
 
   return (
-    <section style={{ color: "#e5e7eb" }}>
+    <section>
       <form
         onSubmit={handleGenerate}
         style={{
@@ -188,7 +189,7 @@ export const Creator: FC<{ type: WorkType }> = ({ type }) => {
             <button
               type="button"
               onClick={handleDownload}
-              style={{ ...buttonStyle, backgroundColor: "#555" }}
+              style={{ ...buttonStyle, backgroundColor: "var(--color-surface-strong)" }}
             >
               ダウンロード
             </button>
@@ -197,7 +198,13 @@ export const Creator: FC<{ type: WorkType }> = ({ type }) => {
       )}
       {saved.length > 0 && (
         <div style={{ marginTop: "2rem" }}>
-          <h2 style={{ fontSize: "1.25rem", margin: "0 0 1rem" }}>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "1.5rem",
+              margin: "0 0 1rem",
+            }}
+          >
             保存した{typeLabels[type]}
           </h2>
           <ul

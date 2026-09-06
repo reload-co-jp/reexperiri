@@ -8,7 +8,7 @@ export const metadata = {
 }
 
 const Page: FC = () => (
-  <div style={{ color: "#e5e7eb" }}>
+  <div>
     <SectionTitle>ロゴを作る</SectionTitle>
     <Creator type="logo" />
   </div>

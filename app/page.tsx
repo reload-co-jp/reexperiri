@@ -2,8 +2,9 @@ import Link from "next/link"
 import { FC } from "react"
 import {
   Badge,
-  Card,
-  CardGrid,
+  CardTitle,
+  GalleryItem,
+  HorizontalGallery,
   SectionTitle,
   WorkImage,
 } from "@/components/elements/card"
@@ -17,14 +18,32 @@ const flow = [
 ]
 
 const Page: FC = () => {
-  const latest = works().slice(0, 3)
+  const latest = works().slice(0, 8)
   return (
-    <div style={{ color: "#e5e7eb", display: "grid", gap: "2rem" }}>
-      <section>
-        <p style={{ fontSize: "1.25rem", margin: 0 }}>
+    <div style={{ display: "grid", gap: "clamp(4rem, 8vw, 7rem)" }}>
+      <section style={{ padding: "clamp(2rem, 6vw, 4rem) 0" }}>
+        <h1
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(3rem, 12vw, 8rem)",
+            letterSpacing: "-0.03em",
+            lineHeight: 0.9,
+            margin: 0,
+          }}
+        >
+          reexperiri
+        </h1>
+        <p
+          style={{
+            color: "var(--color-accent)",
+            fontFamily: "var(--font-script)",
+            fontSize: "clamp(1.75rem, 6vw, 3.5rem)",
+            margin: ".5rem 0 0",
+          }}
+        >
           自分のロゴやマスコットを、自分で作ってみる。
         </p>
-        <p style={{ margin: ".5rem 0 0", opacity: 0.8 }}>
+        <p style={{ color: "var(--color-fg-muted)", margin: "1.5rem 0 0" }}>
           reexperiri
           は、自分のロゴやマスコットを作りながら、その制作方法や体験を学べるWebメディア。
         </p>
@@ -35,7 +54,7 @@ const Page: FC = () => {
           style={{
             display: "flex",
             flexWrap: "wrap",
-            gap: ".5rem",
+            gap: "1rem",
             listStyle: "none",
             margin: 0,
             padding: 0,
@@ -44,16 +63,15 @@ const Page: FC = () => {
           {flow.map((step, index) => (
             <li
               key={step.href}
-              style={{ alignItems: "center", display: "flex", gap: ".5rem" }}
+              style={{ alignItems: "center", display: "flex", gap: "1rem" }}
             >
               {index > 0 && <span aria-hidden="true">→</span>}
               <Link
                 href={step.href}
                 style={{
-                  backgroundColor: "#333",
-                  borderRadius: ".25rem",
-                  color: "#e5e7eb",
-                  padding: ".5rem 1rem",
+                  border: "1px solid var(--color-surface-strong)",
+                  borderRadius: "2rem",
+                  padding: ".6rem 1.25rem",
                   textDecoration: "none",
                 }}
               >
@@ -65,15 +83,15 @@ const Page: FC = () => {
       </section>
       <section>
         <SectionTitle>最新の作品</SectionTitle>
-        <CardGrid>
+        <HorizontalGallery>
           {latest.map((work) => (
-            <Card key={work.id} href={`/works/${work.id}/`}>
+            <GalleryItem key={work.id} href={`/works/${work.id}/`}>
               <WorkImage src={work.image} alt={work.title} />
-              <p style={{ margin: ".5rem 0 .25rem" }}>{work.title}</p>
+              <CardTitle>{work.title}</CardTitle>
               <Badge>{work.type}</Badge>
-            </Card>
+            </GalleryItem>
           ))}
-        </CardGrid>
+        </HorizontalGallery>
       </section>
     </div>
   )

@@ -1,8 +1,9 @@
 import { FC } from "react"
 import {
   Badge,
-  Card,
-  CardGrid,
+  CardTitle,
+  GalleryItem,
+  HorizontalGallery,
   SectionTitle,
   WorkImage,
 } from "@/components/elements/card"
@@ -14,17 +15,17 @@ export const metadata = {
 }
 
 const Page: FC = () => (
-  <div style={{ color: "#e5e7eb" }}>
+  <div>
     <SectionTitle>Works</SectionTitle>
-    <CardGrid>
+    <HorizontalGallery>
       {works().map((work) => (
-        <Card key={work.id} href={`/works/${work.id}/`}>
+        <GalleryItem key={work.id} href={`/works/${work.id}/`}>
           <WorkImage src={work.image} alt={work.title} />
-          <p style={{ margin: ".5rem 0 .25rem" }}>{work.title}</p>
+          <CardTitle>{work.title}</CardTitle>
           <Badge>{work.type}</Badge>
-        </Card>
+        </GalleryItem>
       ))}
-    </CardGrid>
+    </HorizontalGallery>
   </div>
 )
 

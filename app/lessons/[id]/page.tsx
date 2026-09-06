@@ -24,17 +24,38 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const lesson = lessonById(id)
   if (!lesson) notFound()
   return (
-    <article style={{ color: "#e5e7eb", maxWidth: "40rem" }}>
+    <article style={{ margin: "0 auto", maxWidth: "42rem" }}>
       <Badge>{lesson.type}</Badge>
       <SectionTitle>{lesson.title}</SectionTitle>
-      <p style={{ margin: "0 0 1.5rem", opacity: 0.8 }}>{lesson.description}</p>
-      <div style={{ display: "grid", gap: "1.5rem" }}>
+      <p
+        style={{
+          color: "var(--color-fg-muted)",
+          fontSize: "1.1rem",
+          lineHeight: 1.7,
+          margin: "0 0 3rem",
+        }}
+      >
+        {lesson.description}
+      </p>
+      <div style={{ display: "grid", gap: "3rem" }}>
         {lesson.chapters.map((chapter) => (
           <section key={chapter.title}>
-            <h2 style={{ fontSize: "1.1rem", margin: "0 0 .25rem" }}>
+            <h2
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "1.75rem",
+                letterSpacing: "-0.01em",
+                margin: "0 0 .5rem",
+              }}
+            >
               {chapter.title}
             </h2>
-            <p style={{ fontSize: ".9rem", margin: "0 0 .75rem", opacity: 0.7 }}>
+            <p
+              style={{
+                color: "var(--color-fg-muted)",
+                margin: "0 0 1.25rem",
+              }}
+            >
               {chapter.summary}
             </p>
             <ol style={{ display: "grid", gap: "1rem", margin: 0, padding: 0 }}>
@@ -42,16 +63,27 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                 <li
                   key={step.title}
                   style={{
-                    backgroundColor: "#333",
+                    backgroundColor: "var(--color-surface)",
                     borderRadius: ".5rem",
                     listStyle: "none",
-                    padding: "1rem",
+                    padding: "1.25rem",
                   }}
                 >
-                  <p style={{ fontWeight: "bold", margin: "0 0 .25rem" }}>
+                  <p
+                    style={{
+                      fontSize: "1.05rem",
+                      fontWeight: 700,
+                      margin: "0 0 .35rem",
+                    }}
+                  >
                     {index + 1}. {step.title}
                   </p>
-                  <p style={{ fontSize: ".9rem", margin: 0, opacity: 0.85 }}>
+                  <p
+                    style={{
+                      color: "var(--color-fg-muted)",
+                      margin: 0,
+                    }}
+                  >
                     {step.body}
                   </p>
                 </li>
@@ -60,14 +92,16 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           </section>
         ))}
       </div>
-      <p style={{ marginTop: "1.5rem" }}>
+      <p style={{ marginTop: "2rem" }}>
         <Link
           href={`/create/${lesson.type}/`}
           style={{
-            backgroundColor: "#3b82f6",
+            backgroundColor: "var(--color-accent)",
             borderRadius: ".25rem",
             color: "#fff",
-            padding: ".5rem 1.5rem",
+            display: "inline-block",
+            fontWeight: 700,
+            padding: ".75rem 2rem",
             textDecoration: "none",
           }}
         >

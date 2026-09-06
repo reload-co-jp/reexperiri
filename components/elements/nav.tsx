@@ -13,7 +13,7 @@ export const Nav: FC = () => (
     <ul
       style={{
         display: "flex",
-        gap: "1rem",
+        gap: "2rem",
         listStyle: "none",
         margin: 0,
         padding: 0,
@@ -23,7 +23,13 @@ export const Nav: FC = () => (
         <li key={item.href}>
           <Link
             href={item.href}
-            style={{ color: "#e5e7eb", textDecoration: "none" }}
+            style={{
+              fontSize: ".85rem",
+              fontWeight: 500,
+              letterSpacing: "0.05em",
+              textDecoration: "none",
+              textTransform: "uppercase",
+            }}
           >
             {item.label}
           </Link>

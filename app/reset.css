@@ -5,7 +5,63 @@
 }
 
 :root {
-  background: #333;
-  color: #f0f0f0;
-  color-scheme: dark;
+  --color-bg: #ffffff;
+  --color-bg-soft: #f4f4f4;
+  --color-fg: #0a0a0a;
+  --color-fg-muted: rgba(10, 10, 10, 0.6);
+  --color-accent: #ff2ec4;
+  --color-surface: rgba(10, 10, 10, 0.04);
+  --color-surface-strong: rgba(10, 10, 10, 0.08);
+  --font-display: var(--font-archivo-black), "Arial Black", sans-serif;
+  --font-script: var(--font-yomogi), sans-serif;
+
+  background: var(--color-bg);
+  color: var(--color-fg);
+  color-scheme: light;
+}
+
+a {
+  color: inherit;
+}
+
+/* 画像はモノクロ表示、ホバーで色を戻す */
+.duotone {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.duotone img {
+  display: block;
+  filter: grayscale(1);
+  height: auto;
+  max-width: 100%;
+  transition:
+    filter 0.4s ease,
+    transform 0.4s ease;
+}
+
+.duotone:hover img {
+  filter: grayscale(0);
+  transform: scale(1.03);
+}
+
+/* 横スクロールギャラリー */
+.gallery {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: 14rem;
 }

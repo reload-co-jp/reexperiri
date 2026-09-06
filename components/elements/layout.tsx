@@ -5,7 +5,10 @@ export const Title: FC<ComponentProps<"h1">> = ({
   children,
   ...props
 }) => (
-  <h1 style={{ fontSize: "1rem", margin: 0, ...style }} {...props}>
+  <h1
+    style={{ fontSize: "1.5rem", letterSpacing: "-0.02em", margin: 0, ...style }}
+    {...props}
+  >
     {children}
   </h1>
 )
@@ -13,9 +16,7 @@ export const Title: FC<ComponentProps<"h1">> = ({
 export const Header: FC<{ children: ReactNode }> = ({ children }) => (
   <header
     style={{
-      backgroundColor: "#333",
-      boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-      padding: ".5rem 1rem",
+      padding: "clamp(1.5rem, 4vw, 2.5rem)",
       position: "relative",
     }}
   >
@@ -26,9 +27,8 @@ export const Header: FC<{ children: ReactNode }> = ({ children }) => (
 export const Main: FC<{ children: ReactNode }> = ({ children }) => (
   <main
     style={{
-      background: "#222",
       minHeight: "calc(100dvh - 5.625rem)",
-      padding: "1rem",
+      padding: "0 clamp(1.5rem, 4vw, 2.5rem) clamp(3rem, 8vw, 6rem)",
     }}
   >
     {children}
@@ -38,10 +38,9 @@ export const Main: FC<{ children: ReactNode }> = ({ children }) => (
 export const Footer: FC<{ children: ReactNode }> = ({ children }) => (
   <footer
     style={{
-      backgroundColor: "#333",
-      boxShadow: "0 -4px 6px rgba(0, 0, 0, 0.1)",
+      color: "var(--color-fg-muted)",
       fontSize: ".75rem",
-      padding: "1rem",
+      padding: "clamp(1.5rem, 4vw, 2.5rem)",
     }}
   >
     {children}

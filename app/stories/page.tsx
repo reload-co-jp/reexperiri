@@ -1,5 +1,10 @@
 import { FC } from "react"
-import { Card, CardGrid, SectionTitle } from "@/components/elements/card"
+import {
+  Card,
+  CardGrid,
+  CardTitle,
+  SectionTitle,
+} from "@/components/elements/card"
 import { stories } from "@/lib/data"
 
 export const metadata = {
@@ -8,15 +13,21 @@ export const metadata = {
 }
 
 const Page: FC = () => (
-  <div style={{ color: "#e5e7eb" }}>
+  <div>
     <SectionTitle>Stories</SectionTitle>
     <CardGrid>
       {stories().map((story) => (
         <Card key={story.id} href={`/stories/${story.id}/`}>
-          <p style={{ fontSize: ".8rem", margin: "0 0 .25rem", opacity: 0.7 }}>
+          <p
+            style={{
+              color: "var(--color-fg-muted)",
+              fontSize: ".8rem",
+              margin: "0 0 .25rem",
+            }}
+          >
             {story.date}
           </p>
-          <p style={{ fontWeight: "bold", margin: 0 }}>{story.title}</p>
+          <CardTitle>{story.title}</CardTitle>
         </Card>
       ))}
     </CardGrid>

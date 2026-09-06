@@ -26,17 +26,33 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   if (!work) notFound()
   const story = work.storyId ? storyById(work.storyId) : undefined
   return (
-    <article style={{ color: "#e5e7eb", maxWidth: "40rem" }}>
+    <article style={{ margin: "0 auto", maxWidth: "42rem" }}>
       <Badge>{work.type}</Badge>
       <SectionTitle>{work.title}</SectionTitle>
       <WorkImage src={work.image} alt={work.title} />
-      <dl style={{ display: "grid", gap: ".5rem", margin: "1.5rem 0 0" }}>
+      <dl style={{ display: "grid", gap: "1rem", margin: "2rem 0 0" }}>
         <div>
-          <dt style={{ fontSize: ".8rem", opacity: 0.7 }}>プロンプト</dt>
+          <dt
+            style={{
+              color: "var(--color-fg-muted)",
+              fontSize: ".8rem",
+              margin: "0 0 .25rem",
+            }}
+          >
+            プロンプト
+          </dt>
           <dd style={{ margin: 0 }}>{work.prompt}</dd>
         </div>
         <div>
-          <dt style={{ fontSize: ".8rem", opacity: 0.7 }}>設定</dt>
+          <dt
+            style={{
+              color: "var(--color-fg-muted)",
+              fontSize: ".8rem",
+              margin: "0 0 .25rem",
+            }}
+          >
+            設定
+          </dt>
           <dd style={{ margin: 0 }}>
             モチーフ: {work.settings.motif} / スタイル: {work.settings.style} /
             色: {work.settings.color}
@@ -44,10 +60,10 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
         </div>
       </dl>
       {story && (
-        <p style={{ marginTop: "1.5rem" }}>
+        <p style={{ marginTop: "2rem" }}>
           <Link
             href={`/stories/${story.id}/`}
-            style={{ color: "#93c5fd" }}
+            style={{ color: "var(--color-accent)", fontWeight: 600 }}
           >
             制作体験を読む: {story.title}
           </Link>

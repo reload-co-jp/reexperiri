@@ -1,5 +1,10 @@
 import { FC } from "react"
-import { Card, CardGrid, SectionTitle } from "@/components/elements/card"
+import {
+  Card,
+  CardGrid,
+  CardTitle,
+  SectionTitle,
+} from "@/components/elements/card"
 
 export const metadata = {
   title: "Create | reexperiri",
@@ -7,19 +12,21 @@ export const metadata = {
 }
 
 const Page: FC = () => (
-  <div style={{ color: "#e5e7eb" }}>
+  <div>
     <SectionTitle>Create</SectionTitle>
-    <p style={{ margin: "0 0 1rem", opacity: 0.8 }}>作るものを選ぶ。</p>
+    <p style={{ color: "var(--color-fg-muted)", margin: "0 0 2rem" }}>
+      作るものを選ぶ。
+    </p>
     <CardGrid>
       <Card href="/create/logo/">
-        <p style={{ fontWeight: "bold", margin: "0 0 .25rem" }}>ロゴ</p>
-        <p style={{ fontSize: ".85rem", margin: 0, opacity: 0.8 }}>
+        <CardTitle>ロゴ</CardTitle>
+        <p style={{ color: "var(--color-fg-muted)", fontSize: ".85rem", margin: 0 }}>
           モチーフの頭文字と図形を組み合わせたロゴを生成する。
         </p>
       </Card>
       <Card href="/create/mascot/">
-        <p style={{ fontWeight: "bold", margin: "0 0 .25rem" }}>マスコット</p>
-        <p style={{ fontSize: ".85rem", margin: 0, opacity: 0.8 }}>
+        <CardTitle>マスコット</CardTitle>
+        <p style={{ color: "var(--color-fg-muted)", fontSize: ".85rem", margin: 0 }}>
           表情や耳の形が変わるマスコットを生成する。
         </p>
       </Card>

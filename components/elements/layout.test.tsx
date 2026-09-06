@@ -18,7 +18,7 @@ describe("Title", () => {
   it("merges custom style with defaults", () => {
     render(<Title style={{ color: "red" }}>Styled</Title>)
     const heading = screen.getByText("Styled")
-    expect(heading.style.fontSize).toBe("1rem")
+    expect(heading.style.fontSize).toBe("1.5rem")
     expect(heading.style.color).toBe("red")
   })
 })

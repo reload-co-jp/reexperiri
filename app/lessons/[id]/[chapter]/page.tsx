@@ -1,5 +1,7 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import type { ComponentProps } from "react"
+import Markdown from "react-markdown"
 import {
   Badge,
   CardTitle,
@@ -13,6 +15,16 @@ import {
   workById,
   worksByChapter,
 } from "@/lib/data"
+
+const markdownComponents = {
+  img: ({ style, alt, ...props }: ComponentProps<"img">) => (
+    <img
+      {...props}
+      alt={alt ?? ""}
+      style={{ ...style, borderRadius: 0, maxWidth: "100%" }}
+    />
+  ),
+}
 
 export const generateStaticParams = () =>
   lessons().flatMap((lesson) =>
@@ -110,49 +122,73 @@ const Page = async ({
       >
         実践ステップ
       </p>
-      <ol style={{ display: "grid", gap: "1rem", margin: 0, padding: 0 }}>
+      <ol
+        style={{
+          borderTop: "1px solid var(--color-fg-muted)",
+          display: "grid",
+          margin: 0,
+          padding: 0,
+        }}
+      >
         {chapterData.steps.map((step, index) => (
           <li
             key={step.title}
             style={{
-              backgroundColor: "var(--color-surface)",
-              borderRadius: ".5rem",
+              borderBottom: "1px solid var(--color-fg-muted)",
+              display: "flex",
+              gap: "1rem",
               listStyle: "none",
-              padding: "1.25rem",
+              padding: "1.25rem 0",
             }}
           >
-            <p
+            <span
               style={{
-                fontSize: "1.05rem",
+                alignItems: "center",
+                backgroundColor: "var(--color-fg)",
+                color: "var(--color-bg)",
+                display: "flex",
+                flexShrink: 0,
+                fontSize: "1rem",
                 fontWeight: 700,
-                margin: "0 0 .35rem",
+                height: "2rem",
+                justifyContent: "center",
+                width: "2rem",
               }}
             >
-              {index + 1}. {step.title}
-            </p>
-            <p
-              style={{
-                color: "var(--color-fg-muted)",
-                margin: 0,
-              }}
-            >
-              {step.body}
-            </p>
+              {index + 1}
+            </span>
+            <div>
+              <p
+                style={{
+                  fontSize: "1.05rem",
+                  fontWeight: 700,
+                  margin: "0 0 .35rem",
+                }}
+              >
+                {step.title}
+              </p>
+              <p
+                style={{
+                  color: "var(--color-fg-muted)",
+                  margin: 0,
+                }}
+              >
+                {step.body}
+              </p>
+            </div>
           </li>
         ))}
       </ol>
       <div
         style={{
-          backgroundColor: "var(--color-accent-soft, var(--color-surface))",
-          border: "1px solid var(--color-accent)",
-          borderRadius: ".5rem",
+          border: "1px solid var(--color-fg)",
           margin: "2rem 0 0",
           padding: "1.25rem",
         }}
       >
         <p
           style={{
-            color: "var(--color-accent)",
+            color: "var(--color-fg)",
             fontSize: ".9rem",
             fontWeight: 700,
             margin: "0 0 .35rem",
@@ -160,46 +196,74 @@ const Page = async ({
         >
           この章の成果物
         </p>
-        <p style={{ margin: "0 0 1rem" }}>{chapterData.outcome}</p>
-        <div
-          style={{
-            display: "grid",
-            gap: ".75rem",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-          }}
-        >
-          {chapterData.outcomeExamples.map((example) => (
-            <div
-              key={example.title}
-              style={{
-                backgroundColor: "var(--color-surface)",
-                borderRadius: ".5rem",
-                padding: "1rem",
-              }}
-            >
-              <p
-                style={{
-                  fontSize: ".85rem",
-                  fontWeight: 700,
-                  margin: "0 0 .35rem",
-                }}
-              >
-                例：{example.title}
-              </p>
-              <p
-                style={{
-                  color: "var(--color-fg-muted)",
-                  fontSize: ".85rem",
-                  lineHeight: 1.7,
-                  margin: 0,
-                }}
-              >
-                {example.detail}
-              </p>
-            </div>
-          ))}
-        </div>
+        <p style={{ margin: 0 }}>{chapterData.outcome}</p>
       </div>
+      {chapterData.outcomeExamples.length > 0 && (
+        <div style={{ margin: "2rem 0 0" }}>
+          <p
+            style={{
+              color: "var(--color-fg-muted)",
+              fontSize: ".9rem",
+              fontWeight: 700,
+              margin: "0 0 .75rem",
+            }}
+          >
+            実践例
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gap: "1rem",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            }}
+          >
+            {chapterData.outcomeExamples.map((example) => (
+              <div
+                key={example.title}
+                style={{
+                  borderTop: "2px solid var(--color-fg)",
+                  paddingTop: "1rem",
+                }}
+              >
+                <span
+                  style={{
+                    color: "var(--color-fg-muted)",
+                    display: "block",
+                    fontSize: ".7rem",
+                    fontWeight: 700,
+                    letterSpacing: ".1em",
+                    margin: "0 0 .5rem",
+                  }}
+                >
+                  EXAMPLE
+                </span>
+                <p
+                  style={{
+                    fontSize: ".95rem",
+                    fontWeight: 700,
+                    margin: "0 0 .5rem",
+                  }}
+                >
+                  {example.title}
+                </p>
+                <div
+                  style={{
+                    color: "var(--color-fg-muted)",
+                    display: "grid",
+                    fontSize: ".85rem",
+                    gap: ".35rem",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  <Markdown components={markdownComponents}>
+                    {example.detail}
+                  </Markdown>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       {(relatedStories.length > 0 || relatedWorks.length > 0) && (
         <div style={{ margin: "2rem 0 0" }}>
           <p

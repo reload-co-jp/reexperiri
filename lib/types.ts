@@ -25,6 +25,7 @@ export type LessonStep = {
 
 export type LessonOutcomeExample = {
   title: string
+  /** Markdown対応。画像は ![alt](url) で埋め込み */
   detail: string
 }
 

@@ -43,8 +43,8 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
             <Link
               href={`/lessons/${lesson.id}/${index + 1}/`}
               style={{
-                backgroundColor: "var(--color-surface)",
-                borderRadius: ".5rem",
+                borderLeft: "1px solid var(--color-fg)",
+                borderTop: "1px solid var(--color-fg)",
                 color: "inherit",
                 display: "block",
                 padding: "1.25rem",

@@ -21,12 +21,18 @@ export type LessonStep = {
   body: string
 }
 
+export type LessonChapter = {
+  title: string
+  summary: string
+  steps: LessonStep[]
+}
+
 export type Lesson = {
   id: string
   type: WorkType
   title: string
   description: string
-  steps: LessonStep[]
+  chapters: LessonChapter[]
 }
 
 export type Story = {

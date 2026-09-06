@@ -28,26 +28,38 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
       <Badge>{lesson.type}</Badge>
       <SectionTitle>{lesson.title}</SectionTitle>
       <p style={{ margin: "0 0 1.5rem", opacity: 0.8 }}>{lesson.description}</p>
-      <ol style={{ display: "grid", gap: "1rem", margin: 0, padding: 0 }}>
-        {lesson.steps.map((step, index) => (
-          <li
-            key={step.title}
-            style={{
-              backgroundColor: "#333",
-              borderRadius: ".5rem",
-              listStyle: "none",
-              padding: "1rem",
-            }}
-          >
-            <p style={{ fontWeight: "bold", margin: "0 0 .25rem" }}>
-              {index + 1}. {step.title}
+      <div style={{ display: "grid", gap: "1.5rem" }}>
+        {lesson.chapters.map((chapter) => (
+          <section key={chapter.title}>
+            <h2 style={{ fontSize: "1.1rem", margin: "0 0 .25rem" }}>
+              {chapter.title}
+            </h2>
+            <p style={{ fontSize: ".9rem", margin: "0 0 .75rem", opacity: 0.7 }}>
+              {chapter.summary}
             </p>
-            <p style={{ fontSize: ".9rem", margin: 0, opacity: 0.85 }}>
-              {step.body}
-            </p>
-          </li>
+            <ol style={{ display: "grid", gap: "1rem", margin: 0, padding: 0 }}>
+              {chapter.steps.map((step, index) => (
+                <li
+                  key={step.title}
+                  style={{
+                    backgroundColor: "#333",
+                    borderRadius: ".5rem",
+                    listStyle: "none",
+                    padding: "1rem",
+                  }}
+                >
+                  <p style={{ fontWeight: "bold", margin: "0 0 .25rem" }}>
+                    {index + 1}. {step.title}
+                  </p>
+                  <p style={{ fontSize: ".9rem", margin: 0, opacity: 0.85 }}>
+                    {step.body}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </section>
         ))}
-      </ol>
+      </div>
       <p style={{ marginTop: "1.5rem" }}>
         <Link
           href={`/create/${lesson.type}/`}

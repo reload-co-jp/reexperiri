@@ -46,7 +46,7 @@ describe("data integrity", () => {
 
   it("finds items by id", () => {
     expect(lessonById("lesson-001")?.type).toBe("logo")
-    expect(workById("work-001")?.title).toBe("ねこのマスコット")
+    expect(workById("work-002")?.title).toBe("Rのロゴ")
     expect(lessonById("nope")).toBeUndefined()
   })
 })

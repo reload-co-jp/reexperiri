@@ -1,94 +1,92 @@
-# Next.js Static Site Template
+# reexperiri MVP仕様書
 
-Next.js 16 + React 19 + TypeScript を使用した静的サイト生成のテンプレートリポジトリです。GitHub Pages へのデプロイが自動化されています。
+## 1. 概要
 
-## 技術スタック
+**reexperiri** は、自分のロゴやマスコットを作りながら、その制作方法や体験を学べるWebメディア。
 
-- **Next.js** 16 - App Router / Static Export
-- **React** 19
-- **TypeScript** 5
-- **ESLint** 9 - Flat Config
-- **Prettier** 3
+> 自分のロゴやマスコットを、自分で作ってみる。
 
-## このテンプレートの使い方
+## 2. MVP機能
 
-1. **「Use this template」ボタン**をクリックして新しいリポジトリを作成
-2. リポジトリをクローン
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-   cd YOUR_REPO
-   ```
-3. 依存関係をインストール
-   ```bash
-   pnpm install
-   ```
-4. 開発サーバーを起動
-   ```bash
-   pnpm dev
-   ```
+* **Lessons**：ロゴ・マスコット制作のレッスン
+* **Create**：Web上で画像を生成
+* **Works**：生成した作品を表示
+* **Stories**：制作過程・体験記を掲載
+* **Gallery**：作品を一覧表示
 
-## セットアップ後にやること
+## 3. 画面構成
 
-### 1. `next.config.js` の修正
-
-`basePath` をリポジトリ名に変更してください：
-
-```js
-basePath: process.env.NODE_ENV === "production" ? "/YOUR_REPO_NAME" : "",
+```text
+/
+├── lessons/
+├── create/
+│   ├── logo/
+│   └── mascot/
+├── works/
+└── stories/
 ```
 
-### 2. `app/layout.tsx` の修正
+## 4. データ管理
 
-メタデータとサイト情報を更新してください：
+DBは使用せず、JSONと画像ファイルをGitで管理する。
 
-```tsx
-export const metadata: Metadata = {
-  title: "Your Site Title",
-  description: "Your site description",
+```text
+data/
+├── lessons/lessons.json
+├── works/works.json
+└── stories/stories.json
+
+public/
+└── images/
+    ├── lessons/
+    └── works/
+```
+
+### Work
+
+```json
+{
+  "id": "work-001",
+  "type": "mascot",
+  "title": "ねこのマスコット",
+  "image": "/images/works/work-001.png",
+  "prompt": "かわいい猫のマスコット",
+  "settings": {
+    "motif": "猫",
+    "style": "かわいい",
+    "color": "青"
+  },
+  "storyId": "story-001"
 }
 ```
 
-### 3. GitHub Pages の設定
+## 5. 画像生成
 
-1. リポジトリの **Settings** → **Pages** へ移動
-2. **Source** を「GitHub Actions」に設定
-
-## ディレクトリ構成
-
-```
-.
-├── app/
-│   ├── layout.tsx      # ルートレイアウト
-│   ├── page.tsx        # ホームページ
-│   └── reset.css       # CSSリセット
-├── .github/
-│   └── workflows/
-│       ├── lint.yml    # リント自動実行
-│       └── deploy.yml  # GitHub Pages 自動デプロイ
-├── next.config.js      # Next.js 設定
-├── tsconfig.json       # TypeScript 設定
-├── eslint.config.mjs   # ESLint 設定
-└── .prettierrc.json    # Prettier 設定
+```text
+ユーザー入力
+    ↓
+プロンプト生成
+    ↓
+画像生成API
+    ↓
+画像表示
+    ↓
+作品として保存
 ```
 
-## スクリプト
+## 6. 基本フロー
 
-| コマンド | 説明 |
-|---------|------|
-| `pnpm dev` | 開発サーバーを起動 |
-| `pnpm build` | 静的サイトをビルド（`/out` に出力） |
-| `pnpm lint` | ESLint を実行 |
-| `pnpm format` | Prettier でコードをフォーマット |
-| `pnpm typecheck` | TypeScript の型チェック |
+```text
+レッスンを読む
+    ↓
+作ってみる
+    ↓
+画像生成
+    ↓
+作品を見る
+    ↓
+制作体験を読む
+    ↓
+ギャラリーを見る
+```
 
-## 機能
-
-- **静的サイト生成** - `next build` で `/out` に HTML を出力
-- **自動デプロイ** - main ブランチへの push で GitHub Pages に自動デプロイ
-- **自動リント** - push 時に ESLint / Prettier チェックを実行
-- **依存関係の自動更新** - Dependabot による週次チェック
-- **エディタ設定** - VS Code での自動フォーマット設定済み
-
-## ライセンス
-
-ISC

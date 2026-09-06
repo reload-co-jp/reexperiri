@@ -1,0 +1,40 @@
+[
+  {
+    "id": "work-001",
+    "type": "mascot",
+    "title": "ねこのマスコット",
+    "image": "/images/works/work-001.svg",
+    "prompt": "かわいい猫のマスコット、青",
+    "settings": {
+      "motif": "猫",
+      "style": "かわいい",
+      "color": "青"
+    },
+    "storyId": "story-001"
+  },
+  {
+    "id": "work-002",
+    "type": "logo",
+    "title": "Rのロゴ",
+    "image": "/images/works/work-002.svg",
+    "prompt": "シンプルなRのロゴ、緑",
+    "settings": {
+      "motif": "R",
+      "style": "シンプル",
+      "color": "緑"
+    },
+    "storyId": "story-002"
+  },
+  {
+    "id": "work-003",
+    "type": "mascot",
+    "title": "パンのマスコット",
+    "image": "/images/works/work-003.svg",
+    "prompt": "元気なパンのマスコット、橙",
+    "settings": {
+      "motif": "パン",
+      "style": "元気",
+      "color": "橙"
+    }
+  }
+]

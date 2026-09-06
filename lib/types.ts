@@ -24,6 +24,7 @@ export type LessonStep = {
 export type LessonChapter = {
   title: string
   summary: string
+  lecture?: string[]
   steps: LessonStep[]
 }
 

@@ -68,6 +68,32 @@ const Page = async ({
       >
         {chapterData.summary}
       </p>
+      {chapterData.lecture && (
+        <div style={{ display: "grid", gap: "1rem", margin: "0 0 3rem" }}>
+          {chapterData.lecture.map((paragraph, index) => (
+            <p
+              key={index}
+              style={{
+                fontSize: "1rem",
+                lineHeight: 1.9,
+                margin: 0,
+              }}
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      )}
+      <p
+        style={{
+          color: "var(--color-fg-muted)",
+          fontSize: ".9rem",
+          fontWeight: 700,
+          margin: "0 0 .75rem",
+        }}
+      >
+        実践ステップ
+      </p>
       <ol style={{ display: "grid", gap: "1rem", margin: 0, padding: 0 }}>
         {chapterData.steps.map((step, index) => (
           <li

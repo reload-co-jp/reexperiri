@@ -24,3 +24,20 @@ export const storyById = (id: string): Story | undefined =>
 
 export const storyByWorkId = (workId: string): Story | undefined =>
   stories().find((story) => story.workId === workId)
+
+export const worksByChapter = (
+  lessonId: string,
+  chapterIndex: number,
+): Work[] =>
+  works().filter(
+    (work) => work.lessonId === lessonId && work.chapterIndex === chapterIndex,
+  )
+
+export const storiesByChapter = (
+  lessonId: string,
+  chapterIndex: number,
+): Story[] =>
+  stories().filter(
+    (story) =>
+      story.lessonId === lessonId && story.chapterIndex === chapterIndex,
+  )

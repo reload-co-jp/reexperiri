@@ -1,7 +1,18 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { Badge, SectionTitle } from "@/components/elements/card"
-import { lessonById, lessons } from "@/lib/data"
+import {
+  Badge,
+  CardTitle,
+  SectionTitle,
+  WorkImage,
+} from "@/components/elements/card"
+import {
+  lessonById,
+  lessons,
+  storiesByChapter,
+  workById,
+  worksByChapter,
+} from "@/lib/data"
 
 export const generateStaticParams = () =>
   lessons().flatMap((lesson) =>
@@ -42,6 +53,11 @@ const Page = async ({
   const nextChapter =
     chapterIndex < lesson.chapters.length - 1 ? chapterIndex + 2 : null
   const isLastChapter = nextChapter === null
+
+  const relatedStories = storiesByChapter(lesson.id, chapterIndex + 1)
+  const relatedWorks = worksByChapter(lesson.id, chapterIndex + 1).filter(
+    (work) => !work.storyId,
+  )
 
   return (
     <article style={{ margin: "0 auto", maxWidth: "42rem" }}>
@@ -125,6 +141,115 @@ const Page = async ({
           </li>
         ))}
       </ol>
+      <div
+        style={{
+          backgroundColor: "var(--color-accent-soft, var(--color-surface))",
+          border: "1px solid var(--color-accent)",
+          borderRadius: ".5rem",
+          margin: "2rem 0 0",
+          padding: "1.25rem",
+        }}
+      >
+        <p
+          style={{
+            color: "var(--color-accent)",
+            fontSize: ".9rem",
+            fontWeight: 700,
+            margin: "0 0 .35rem",
+          }}
+        >
+          この章の成果物
+        </p>
+        <p style={{ margin: "0 0 1rem" }}>{chapterData.outcome}</p>
+        <div
+          style={{
+            display: "grid",
+            gap: ".75rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          }}
+        >
+          {chapterData.outcomeExamples.map((example) => (
+            <div
+              key={example.title}
+              style={{
+                backgroundColor: "var(--color-surface)",
+                borderRadius: ".5rem",
+                padding: "1rem",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: ".85rem",
+                  fontWeight: 700,
+                  margin: "0 0 .35rem",
+                }}
+              >
+                例：{example.title}
+              </p>
+              <p
+                style={{
+                  color: "var(--color-fg-muted)",
+                  fontSize: ".85rem",
+                  lineHeight: 1.7,
+                  margin: 0,
+                }}
+              >
+                {example.detail}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+      {(relatedStories.length > 0 || relatedWorks.length > 0) && (
+        <div style={{ margin: "2rem 0 0" }}>
+          <p
+            style={{
+              color: "var(--color-fg-muted)",
+              fontSize: ".9rem",
+              fontWeight: 700,
+              margin: "0 0 .75rem",
+            }}
+          >
+            この章を実践した人
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gap: "1.5rem",
+              gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+            }}
+          >
+            {relatedStories.map((story) => (
+              <Link
+                key={story.id}
+                href={`/stories/${story.id}/`}
+                style={{ textDecoration: "none" }}
+              >
+                {story.workId && (
+                  <WorkImage
+                    src={workById(story.workId)?.image ?? ""}
+                    alt={story.title}
+                    size={160}
+                  />
+                )}
+                <CardTitle>{story.title}</CardTitle>
+                <Badge>体験談</Badge>
+              </Link>
+            ))}
+            {relatedWorks.map((work) => (
+              <Link
+                key={work.id}
+                href={`/works/${work.id}/`}
+                style={{ textDecoration: "none" }}
+              >
+                <WorkImage src={work.image} alt={work.title} size={160} />
+                <CardTitle>{work.title}</CardTitle>
+                <Badge>{work.type}</Badge>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
       <div
         style={{
           alignItems: "center",

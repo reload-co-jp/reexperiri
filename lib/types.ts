@@ -14,6 +14,8 @@ export type Work = {
   prompt: string
   settings: WorkSettings
   storyId?: string
+  lessonId?: string
+  chapterIndex?: number
 }
 
 export type LessonStep = {
@@ -21,11 +23,18 @@ export type LessonStep = {
   body: string
 }
 
+export type LessonOutcomeExample = {
+  title: string
+  detail: string
+}
+
 export type LessonChapter = {
   title: string
   summary: string
   lecture?: string[]
   steps: LessonStep[]
+  outcome: string
+  outcomeExamples: LessonOutcomeExample[]
 }
 
 export type Lesson = {
@@ -42,6 +51,8 @@ export type Story = {
   workId?: string
   date: string
   body: string[]
+  lessonId?: string
+  chapterIndex?: number
 }
 
 export type GenerateInput = {

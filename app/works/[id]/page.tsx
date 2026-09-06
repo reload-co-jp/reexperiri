@@ -69,6 +69,16 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           </Link>
         </p>
       )}
+      {work.lessonId && work.chapterIndex && (
+        <p style={{ marginTop: story ? ".75rem" : "2rem" }}>
+          <Link
+            href={`/lessons/${work.lessonId}/${work.chapterIndex}/`}
+            style={{ color: "var(--color-accent)", fontWeight: 600 }}
+          >
+            この作品につながるレッスン章を見る
+          </Link>
+        </p>
+      )}
     </article>
   )
 }

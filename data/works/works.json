@@ -10,7 +10,9 @@
       "style": "かわいい",
       "color": "青"
     },
-    "storyId": "story-001"
+    "storyId": "story-001",
+    "lessonId": "lesson-002",
+    "chapterIndex": 2
   },
   {
     "id": "work-002",
@@ -23,7 +25,9 @@
       "style": "シンプル",
       "color": "緑"
     },
-    "storyId": "story-002"
+    "storyId": "story-002",
+    "lessonId": "lesson-001",
+    "chapterIndex": 5
   },
   {
     "id": "work-003",
@@ -35,6 +39,8 @@
       "motif": "パン",
       "style": "元気",
       "color": "橙"
-    }
+    },
+    "lessonId": "lesson-002",
+    "chapterIndex": 4
   }
 ]

@@ -37,77 +37,41 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
       >
         {lesson.description}
       </p>
-      <div style={{ display: "grid", gap: "3rem" }}>
-        {lesson.chapters.map((chapter) => (
-          <section key={chapter.title}>
-            <h2
+      <ol style={{ display: "grid", gap: "1rem", margin: 0, padding: 0 }}>
+        {lesson.chapters.map((chapter, index) => (
+          <li key={chapter.title} style={{ listStyle: "none" }}>
+            <Link
+              href={`/lessons/${lesson.id}/${index + 1}/`}
               style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "1.75rem",
-                letterSpacing: "-0.01em",
-                margin: "0 0 .5rem",
+                backgroundColor: "var(--color-surface)",
+                borderRadius: ".5rem",
+                color: "inherit",
+                display: "block",
+                padding: "1.25rem",
+                textDecoration: "none",
               }}
             >
-              {chapter.title}
-            </h2>
-            <p
-              style={{
-                color: "var(--color-fg-muted)",
-                margin: "0 0 1.25rem",
-              }}
-            >
-              {chapter.summary}
-            </p>
-            <ol style={{ display: "grid", gap: "1rem", margin: 0, padding: 0 }}>
-              {chapter.steps.map((step, index) => (
-                <li
-                  key={step.title}
-                  style={{
-                    backgroundColor: "var(--color-surface)",
-                    borderRadius: ".5rem",
-                    listStyle: "none",
-                    padding: "1.25rem",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontSize: "1.05rem",
-                      fontWeight: 700,
-                      margin: "0 0 .35rem",
-                    }}
-                  >
-                    {index + 1}. {step.title}
-                  </p>
-                  <p
-                    style={{
-                      color: "var(--color-fg-muted)",
-                      margin: 0,
-                    }}
-                  >
-                    {step.body}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </section>
+              <p
+                style={{
+                  fontSize: "1.05rem",
+                  fontWeight: 700,
+                  margin: "0 0 .35rem",
+                }}
+              >
+                {chapter.title}
+              </p>
+              <p
+                style={{
+                  color: "var(--color-fg-muted)",
+                  margin: 0,
+                }}
+              >
+                {chapter.summary}
+              </p>
+            </Link>
+          </li>
         ))}
-      </div>
-      <p style={{ marginTop: "2rem" }}>
-        <Link
-          href={`/create/${lesson.type}/`}
-          style={{
-            backgroundColor: "var(--color-accent)",
-            borderRadius: ".25rem",
-            color: "#fff",
-            display: "inline-block",
-            fontWeight: 700,
-            padding: ".75rem 2rem",
-            textDecoration: "none",
-          }}
-        >
-          作ってみる
-        </Link>
-      </p>
+      </ol>
     </article>
   )
 }

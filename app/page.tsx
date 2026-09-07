@@ -23,12 +23,14 @@ const Page: FC = () => {
     <div style={{ display: "grid", gap: "clamp(4rem, 8vw, 7rem)" }}>
       <section style={{ padding: "clamp(2rem, 6vw, 4rem) 0" }}>
         <h1
+          className="fx-marker"
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(3rem, 12vw, 8rem)",
             letterSpacing: "-0.03em",
             lineHeight: 0.9,
             margin: 0,
+            display: "inline-block",
           }}
         >
           reexperiri

@@ -33,7 +33,7 @@ const Page: FC = () => {
             display: "inline-block",
           }}
         >
-          reexperiri
+          Reexperiri
         </h1>
         <p
           style={{
@@ -43,11 +43,11 @@ const Page: FC = () => {
             margin: ".5rem 0 0",
           }}
         >
-          自分のロゴやマスコットを、自分で作ってみる。
+          自分で作って、学ぶ。
         </p>
         <p style={{ color: "var(--color-fg-muted)", margin: "1.5rem 0 0" }}>
-          reexperiri
-          は、自分のロゴやマスコットを作りながら、その制作方法や体験を学べるWebメディア。
+          Reexperiri
+          は、自分クリエイティブを作りながら、その制作方法や体験を学べるWebメディア。
         </p>
       </section>
       <section>

@@ -9,11 +9,11 @@
   --color-bg-soft: #f4f4f4;
   --color-fg: #0a0a0a;
   --color-fg-muted: rgba(10, 10, 10, 0.6);
-  --color-accent: #ff2ec4;
+  --color-accent: #2b3a55;
   --color-surface: rgba(10, 10, 10, 0.04);
   --color-surface-strong: rgba(10, 10, 10, 0.08);
   --font-display: var(--font-archivo-black), "Arial Black", sans-serif;
-  --font-script: var(--font-yomogi), sans-serif;
+  --font-script: var(--font-klee-one), sans-serif;
 
   background: var(--color-bg);
   color: var(--color-fg);

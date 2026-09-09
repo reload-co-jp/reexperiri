@@ -3,7 +3,6 @@ import { FC } from "react"
 
 const items = [
   { href: "/lessons/", label: "Lessons" },
-  { href: "/create/", label: "Create" },
   { href: "/works/", label: "Works" },
   { href: "/stories/", label: "Stories" },
 ]

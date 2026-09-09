@@ -333,19 +333,7 @@ const Page = async ({
           <span />
         )}
         {isLastChapter ? (
-          <Link
-            href={`/create/${lesson.type}/`}
-            style={{
-              backgroundColor: "var(--color-accent)",
-              borderRadius: ".25rem",
-              color: "#fff",
-              fontWeight: 700,
-              padding: ".75rem 2rem",
-              textDecoration: "none",
-            }}
-          >
-            作ってみる
-          </Link>
+          <span />
         ) : (
           <Link
             href={`/lessons/${lesson.id}/${nextChapter}/`}

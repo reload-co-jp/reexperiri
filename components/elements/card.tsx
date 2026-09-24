@@ -9,9 +9,27 @@ export const WorkImage: FC<{ src: string; alt: string; size?: number }> = ({
 }) => (
   <span
     className="duotone"
-    style={{ borderRadius: ".25rem", maxWidth: size, width: "100%" }}
+    style={{
+      borderRadius: ".25rem",
+      display: "block",
+      maxWidth: size,
+      overflow: "hidden",
+      position: "relative",
+      width: "100%",
+    }}
   >
-    <img src={assetPath(src)} alt={alt} width={size} height={size} />
+    <img
+      src={assetPath(src)}
+      alt={alt}
+      width={size}
+      height={size}
+      style={{
+        display: "block",
+        height: "auto",
+        maxWidth: "100%",
+        transition: "filter 0.4s ease, transform 0.4s ease",
+      }}
+    />
   </span>
 )
 
@@ -29,13 +47,34 @@ export const CardGrid: FC<{ children: ReactNode }> = ({ children }) => (
 
 export const HorizontalGallery: FC<{ children: ReactNode }> = ({
   children,
-}) => <div className="gallery">{children}</div>
+}) => (
+  <div
+    style={{
+      display: "flex",
+      gap: "2rem",
+      overflowX: "auto",
+      paddingBottom: "1rem",
+      scrollSnapType: "x mandatory",
+      scrollbarWidth: "none",
+    }}
+  >
+    {children}
+  </div>
+)
 
 export const GalleryItem: FC<{ href: string; children: ReactNode }> = ({
   href,
   children,
 }) => (
-  <Link href={href} className="gallery-item" style={{ textDecoration: "none" }}>
+  <Link
+    href={href}
+    style={{
+      flex: "0 0 auto",
+      scrollSnapAlign: "start",
+      textDecoration: "none",
+      width: "14rem",
+    }}
+  >
     {children}
   </Link>
 )

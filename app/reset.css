@@ -24,21 +24,9 @@ a {
   color: inherit;
 }
 
-/* 画像はモノクロ表示、ホバーで色を戻す */
-.duotone {
-  display: block;
-  overflow: hidden;
-  position: relative;
-}
-
+/* 画像はモノクロ表示、ホバーで色を戻す (擬似クラスのみCSS) */
 .duotone img {
-  display: block;
   filter: grayscale(1);
-  height: auto;
-  max-width: 100%;
-  transition:
-    filter 0.4s ease,
-    transform 0.4s ease;
 }
 
 .duotone:hover img {
@@ -46,39 +34,7 @@ a {
   transform: scale(1.03);
 }
 
-/* 横スクロールギャラリー */
-.gallery {
-  display: flex;
-  gap: 2rem;
-  overflow-x: auto;
-  padding-bottom: 1rem;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-
-.gallery::-webkit-scrollbar {
-  display: none;
-}
-
-.gallery-item {
-  flex: 0 0 auto;
-  scroll-snap-align: start;
-  width: 14rem;
-}
-
 /* マーカーペンでハイライトするタイトル演出 (Hi-Liter) */
-.fx-marker {
-  padding: 0.05em 0.15em;
-  background: linear-gradient(
-      100deg,
-      color-mix(in srgb, var(--color-accent) 85%, transparent),
-      color-mix(in srgb, var(--color-accent) 60%, transparent)
-    )
-    no-repeat 0 62%;
-  background-size: 0% 46%;
-  animation: fx-marker 3s ease-in-out infinite;
-}
-
 @keyframes fx-marker {
   0% {
     background-size: 0% 46%;

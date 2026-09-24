@@ -17,8 +17,14 @@ const Page: FC = () => {
     <div style={{ display: "grid", gap: "clamp(4rem, 8vw, 7rem)" }}>
       <section style={{ padding: "clamp(2rem, 6vw, 4rem) 0" }}>
         <h1
-          className="fx-marker"
           style={{
+            animation: "fx-marker 3s ease-in-out infinite",
+            backgroundImage:
+              "linear-gradient(100deg, color-mix(in srgb, var(--color-accent) 85%, transparent), color-mix(in srgb, var(--color-accent) 60%, transparent))",
+            backgroundPosition: "0 62%",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "0% 46%",
+            padding: "0.05em 0.15em",
             fontFamily: "var(--font-display)",
             fontSize: "clamp(3rem, 12vw, 8rem)",
             letterSpacing: "-0.03em",
@@ -49,7 +55,11 @@ const Page: FC = () => {
           <div key={lesson.id}>
             <Link
               href={`/lessons/${lesson.id}/`}
-              style={{ color: "inherit", display: "block", textDecoration: "none" }}
+              style={{
+                color: "inherit",
+                display: "block",
+                textDecoration: "none",
+              }}
             >
               <CardTitle>{lesson.title}</CardTitle>
               <Badge>{lesson.type}</Badge>

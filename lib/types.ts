@@ -1,4 +1,4 @@
-export type WorkType = "logo" | "mascot"
+export type WorkType = "logo" | "mascot" | "tanka"
 
 export type WorkSettings = {
   motif: string

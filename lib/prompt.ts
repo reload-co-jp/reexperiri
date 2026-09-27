@@ -3,6 +3,7 @@ import { WorkSettings, WorkType } from "./types"
 const typeLabels: Record<WorkType, string> = {
   logo: "ロゴ",
   mascot: "マスコット",
+  tanka: "短歌",
 }
 
 // 形容詞(〜い)はそのまま、形容動詞などは「な」で接続する
